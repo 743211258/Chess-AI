@@ -5,10 +5,21 @@ import torch
 import json
 import numpy as np
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+import os
 
 
 class collect_data():
-    def __init__(self, model = None):
+    def __init__(self, model = None, model_path = None):
+        if model is None:
+            model = CNN(512, 10).to(device)
+
+        # 如果模型文件存在则加载
+        if os.path.exists(model_path):
+            print(f"✅ Loading model from {model_path}")
+            model.load_state_dict(torch.load(model_path, map_location=device))
+        else:
+            print(f"⚠️ No model found at {model_path}, using a new model.")
+
         self.model = model
         self.board = chess.Board()
 
@@ -45,25 +56,26 @@ class collect_data():
         training_data = list(zip(states, mcts_probs, win))
         serializable_data = []
 
-        for state, (pi_indices, pi_probs), z in training_data:
-            if isinstance(pi_indices, torch.Tensor):
-                pi_indices = pi_indices.tolist()
-            if isinstance(pi_probs, torch.Tensor):
-                pi_probs = pi_probs.tolist()
-            else:
-                pi_probs = [p.item() if isinstance(p, torch.Tensor) else float(p) for p in pi_probs]
-
-            serializable_data.append({
-                'state_fen': state,
-                'pi_indices': list(pi_indices),
-                'pi_probs': pi_probs,           
-                'z': int(z)                  
-            })
-
-        with open('training_data.json', 'w') as f:
-            json.dump(serializable_data, f, indent = 4)
-
+        with open("training_data.jsonl", 'a') as f:
+            for state, (pi_indices, pi_probs), z in training_data:
+                if isinstance(pi_indices, torch.Tensor):
+                    pi_indices = pi_indices.tolist()
+                if isinstance(pi_probs, torch.Tensor):
+                    pi_probs = pi_probs.tolist()
+                else:
+                    pi_probs = [float(p) for p in pi_probs]
+                entry = {
+                    'state_fen': state,
+                    'pi_indices': pi_indices,
+                    'pi_probs': pi_probs,
+                    'z': int(z)
+                }
+                f.write(json.dumps(entry) + '\n')
             
 
-#data = collect_data()   
-#data.self_play(MCTSplayer(masked_policy, CNN(512, 10).to(device)))                         
+
+for x in range(10):
+    data = collect_data(None, model_path = "C:\Chess\latest_model.pth")   
+    data.self_play(MCTSplayer(masked_policy, CNN(512, 10).to(device)))           
+    print(f"iteration {x}")            
+
