@@ -86,8 +86,8 @@ class MCTS():
             board_copy = board.copy()
             self.algorithm(board_copy)
             if x % 100 == 0:
-                print(f"已搜索{x}个局面")
-                print(f"当前树大小（节点数）: {self.root.count_nodes(self.root)}")
+                print(f"searched {x} board states")
+                print(f"Tree size: {self.root.count_nodes(self.root)}")
 
         act_visits= [(act, node.visits)
             for act, node in self.root.children.items()]
