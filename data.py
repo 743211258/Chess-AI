@@ -13,7 +13,6 @@ class collect_data():
         if model is None:
             model = CNN(512, 10).to(device)
 
-        # 如果模型文件存在则加载
         if os.path.exists(model_path):
             print(f"✅ Loading model from {model_path}")
             model.load_state_dict(torch.load(model_path, map_location=device))
