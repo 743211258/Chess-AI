@@ -1,5 +1,5 @@
 import chess
-from deep_reinforcement import MCTSplayer
+from mcts import MCTSplayer
 from cnn import masked_policy, CNN
 import torch
 import json
