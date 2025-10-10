@@ -2,7 +2,7 @@ import torch
 import os
 from cnn import CNN
 from data import collect_data
-from deep_reinforcement import MCTSplayer
+from mcts import MCTSplayer
 from cnn import masked_policy
 from load_data import load_random_batch
 
