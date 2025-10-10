@@ -49,8 +49,7 @@ for number in range(1, 9):
 uci_to_index = {uci: idx for idx, uci in enumerate(move_id)}
 
 def move_to_index(move: chess.Move) -> int:
-    """将一个 chess.Move 转为 move_id 中的索引"""
     uci_str = move.uci()
-    return uci_to_index.get(uci_str, -1)  # -1 表示不在 move_id 列表中
+    return uci_to_index.get(uci_str, -1) 
 
 
