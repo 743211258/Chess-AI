@@ -31,7 +31,7 @@ The following table is a brief description of each function that I had uploaded.
 4. Run it on VSCode/Pycharm, make sure you already have Python 3.10.8 or higher and all required libraries.
 
 # Outputs
-![Logo](./Screenshot 2025-10-30 225516.png)
+![Logo](./"Screenshot 2025-10-30 225516.png")
 
 # Potential Improvement
 The code works, but it also works poorly. Here are some changes that I am seeking to do.
