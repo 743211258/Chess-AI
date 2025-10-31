@@ -10,8 +10,11 @@ The move is chosen based on both Monte-Carlo Search and a series of parameters t
 The following list is a brief description of each function that I had uploaded.
 
 |Functions                             |Descriptions                                                                                                        |
+|--------------------------------------|--------------------------------------------------------------------------------------------------------------------|
 |archive_data.jsonl                    |A file to store past training data.(Over 30000 lines)                                                               |
+|--------------------------------------|--------------------------------------------------------------------------------------------------------------------|
 |cnn.py                                |The implementation of the neural network.                                                                           |
+|--------------------------------------|--------------------------------------------------------------------------------------------------------------------|
 |data.py                               |Based on mcts.py. This file enables self play and record outcomes into training_data.json.                          |
 |--------------------------------------|--------------------------------------------------------------------------------------------------------------------|
 |game.py                               |This file calculated all possible legal moves in uci notation. Each move is stored in a list called move_id.        |
