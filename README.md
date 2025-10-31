@@ -7,13 +7,13 @@ The Neural network is trained on self-play methods, a type of deep reinforcement
 The move is chosen based on both Monte-Carlo Search and a series of parameters that ensures exploration. The result is saved in a form that can be used for training.
 
 # Functions
-The following list is a brief description of each function that I had uploaded.
+The following table is a brief description of each function that I had uploaded.
 
 |Functions                             |Descriptions                                                                                                        |
 |--------------------------------------|--------------------------------------------------------------------------------------------------------------------|
 |archive_data.jsonl                    |A file to store past training data.(Over 30000 lines)                                                               |
 |cnn.py                                |The implementation of the neural network.                                                                           |
-|data.py                               |Based on mcts.py. This file enables self play and record outcomes into training_data.json.                          |
+|data.py                               |Based on mcts.py. This file enables self-play and record outcomes into training_data.json.                          |
 |game.py                               |This file calculated all possible legal moves in uci notation. Each move is stored in a list called move_id.        |
 |input.py                              |Read a pgn file or convert a chess board to tensors.                                                                |
 |lichess_db_standard_rated_2013-01.pgn |pgn file downloaded from lichess open database.                                                                     |
@@ -23,4 +23,18 @@ The following list is a brief description of each function that I had uploaded.
 |model_checkpoint.pth                  |Weights of the neural network after some training.                                                                  |
 |train.py                              |Train the neural network in batches.                                                                                |
 |training_data.json                    |A file to store current training data.                                                                              |
-|--------------------------------------|--------------------------------------------------------------------------------------------------------------------|
+
+# Installation
+1. Download VSCode/Pycharm.
+2. Download/clone the repository.
+3. If download, unzip the zip file.
+4. Run it on VSCode/Pycharm, make sure you already have Python 3.10.8 or higher and all required libraries.
+
+# Outputs
+![Logo](./Screenshot 2025-10-30 225516.png)
+
+# Potential Improvement
+The code works, but it also works poorly. Here are some changes that I am seeking to do.
+1. Generate self-play algorithm in parallel (multithreading or multiprocessing).
+2. Rewrite the Monte-Carlo Search algorithm in C++ for better performance.
+3. Improve training process.
